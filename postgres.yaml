@@ -1,0 +1,16 @@
+- name: Deploy postgresql
+  hosts: localhost
+  connection: local
+  vars:
+    postgresql_pg_hba_conf:
+      - type: local
+        database: all
+        user: all
+        auth_method: trust
+
+  tasks:
+  - name: Configure postgresql using role
+    import_role:
+      name: linux-system-roles.postgresql
+    become: yes
+    become_user: root
