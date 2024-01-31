@@ -5,15 +5,15 @@
   become_user: root
 
   tasks:
-  - name: Configure cockpit using role
+  - name: Cockpit
     import_role:
       name: linux-system-roles.cockpit
     vars:
       cockpit_packages: minimal
 
-   - name: Configure Firewall for Web Console
+  - name: Firewall
     import_role:
-      name: fedora.linux_system_roles.firewall
+      name: linux-system-roles.firewall
     vars:
       firewall:
         service: cockpit
