@@ -1,0 +1,20 @@
+- name: Deploy cockpit
+  hosts: localhost
+  connection: local
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Configure cockpit using role
+    import_role:
+      name: linux-system-roles.cockpit
+    vars:
+      cockpit_packages: minimal
+
+   - name: Configure Firewall for Web Console
+    import_role:
+      name: fedora.linux_system_roles.firewall
+    vars:
+      firewall:
+        service: cockpit
+        state: enabled
